@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#wrapper { width: 50%; 
+	           margin: 0 auto; 
+	           text-align: center; 
+	           display: flex; 
+	           flex-wrap: wrap;
+	}
+	
+	.first, .second, .thrid { width: 50%; height: 50px;}
+	
+	.first { width : 100px;}
+	
+	.first {background: red;}
+	.second {background: yellow;}
+	.thrid {background: blue;}
+	
+</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="first">컨텐츠를 불러오고 있습니다.</div>
+		<div class="second">컨텐츠를 불러오고 있습니다.</div>
+		<div class="thrid">컨텐츠를 불러오고 있습니다.</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+ // 	ajax메서드 사용
+		$.ajax({
+			// URL 작성 (절대경로, 상대경로)
+			url: "http://192.168.10.4/jquery/first",
+			// get, post, put, delete 방식 중 하나로 요청
+			type: "GET",
+			// data라는 이름에 보낼 데이터를 넣어준다
+			data: "name1=value1&name2=value2",
+			// ↑요청과 관련   ↓응답과 관련
+			// 서버가 보내주는 데이터 타입을 사용  - 주로 text 또는 json으로 보낸다
+			dataTpye: "text",
+			success: function(data) {
+				// 응답을 성공적으로 받았을 때 수행할 코드
+				$(".first").text(data);
+			},
+			error: function() {
+				// 응답을 성공적으로 받지 못했을 때 수행할 코드
+				alert("서버에 문제가 생겼습니다.");
+			}
+		});
+ 
+		$.ajax({
+			// URL 작성
+			url: "http://192.168.10.4/jquery/second",
+			// get, post, put, delete 방식 중 하나로 요청
+			type: "GET",
+			success: function() {
+				// 응답을 성공적으로 받았을 때 수행할 코드
+				$(".second").text("2");
+			},
+			error: function(result) {
+				// 응답을 성공적으로 받지 못했을 때 수행할 코드
+				// 서버가 400번대, 500번대 상태코드를 응답하면 동작
+				
+				// 아래 조건식을 수정해서 400번대로 응답이 왔을 때 / 500번대로 응답이 왔을 때로 조건을 수정하세요 
+				if(result.status >= 400 && result.status < 500) {
+				 alert("비정상적인 호출입니다.");
+				} else if(result.status >= 500) {
+					alert("서버에 문제가 생겼습니다. 잠시후 다시 시도해주세요.");
+				}
+			}
+		});
+	</script>
+</body>
+</html>

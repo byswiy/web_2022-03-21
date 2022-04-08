@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>회원정보</h3>
+	<!-- 프로토콜을 빼고 입력하면 상대경로가 된다 => 192.168.10.4/ch04_ex01 -->
+	<!-- 프로토콜을 빼고 주소까지 빼고 입력해도 상대경로가 된다 => ch04_ex01 -->
+	<form action="ch04_ex01" method="post">
+		<label>ID : <input type="text" name="id"></label><br>
+		<label>PW : <input type="password" name="pw"></label><br>
+		<label>이름 : <input type="text" name="name"></label><br>
+
+		<label> 취미: 
+			<input type="checkbox" name="hobby" value="climbing"> 등산
+			<input type="checkbox" name="hobby" value="sports"> 운동
+			<input type="checkbox" name="hobby" value="reading"> 독서
+			<input type="checkbox" name="hobby" value="traveling"> 여행
+		</label><br>
+		
+		<label> 성별 : 
+			<input type="radio" name="gender" value="male"> 남자
+			<input type="radio" name="gender" value="female"> 여자
+		</label><br>
+		
+		<label> 종교 : 
+			<select name="religion">
+				<option value="christianity">기독교</option>
+				<option value="buddhism">블교</option>
+				<option value="catholicism">천주교</option>
+				<option value="atheism">무교</option>
+			</select>
+		</label><br>
+		
+		<label> 자기소개 : <br>
+			<textarea rows="10" cols="30" name="intro"></textarea>
+		</label><br>
+		
+		<input type="submit" value="전송">
+		
+		
+	</form>
+
+</body>
+</html>
